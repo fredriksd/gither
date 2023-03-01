@@ -9,6 +9,18 @@ EXECUTABLE_NAME = "pr"
 class PullRequest:
     def __init__(self, branch):
         self.branch = branch
+        self.description = None
+
+    def make_description():
+        editor = os.environ("EDITOR")
+
+        if editor is None:
+            print("Warning: $EDITOR is not set. Defaulting to vim...")
+            editor = "vim"
+
+        template_document = "~/pr/templates/change_description.md"
+
+        subprocess.run([editor,]
 
 class Branch:
     def __init__(self, branch):
@@ -105,7 +117,7 @@ def run(args, capture_output = False):
 
     if cmd.returncode != 0:
         raise RuntimeError(
-                """
+                f"""
                 Failed to call \"{" ".join(args)}\".
                 stderr:
                     {cmd.stderr}
